@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">NoteApp</string>
+    <string name="welcome_back">Welcome\nback</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="signup"><font fgcolor="#6C7E8E">Don’t have an account?</font> <font fgcolor="#7885FF">Sign up</font></string>
+    <string name="create_naccount">Create\naccount</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="create_account">Create account</string>
+    <string name="all_notes">All Notes</string>
+    <string name="there_are_many_apps_in_android_that_can_run_or_emulate_other_operating_systems_via_utilizing_hardware_support_for_platform">There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform...</string>
+    <string name="youtube_script_ideas">✍️ Youtube script ideas</string>
+    <string name="no_notes_found">No notes found</string>
+    <string name="add_notes">Add notes</string>
+    <string name="title">Title</string>
+    <string name="your_notes_here">Your notes here...</string>
+    <string name="save">Save</string>
+</resources>
