@@ -23,9 +23,10 @@ class NoteRecyclerViewActivity : AppCompatActivity() {
         setUpRecyclerView()
         val notes = List(10) {
             Note(
-                id = UUID.randomUUID().toString(),
+                id = UUID.randomUUID().toString().toInt(),
                 title = "$it title. ✍\uFE0F Youtube script ideas",
-                note = "There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... "
+                note = "There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ",
+                null
             )
         }
         noteListAdapter.submitList(notes) {
