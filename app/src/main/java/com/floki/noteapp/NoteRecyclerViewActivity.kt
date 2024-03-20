@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.floki.noteapp.Model.Note
 import com.floki.noteapp.databinding.ActivityAllNoteBinding
-import com.google.android.material.snackbar.Snackbar
 import java.util.UUID
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -25,7 +25,7 @@ class NoteRecyclerViewActivity : AppCompatActivity() {
             Note(
                 id = UUID.randomUUID().toString(),
                 title = "$it title. ✍\uFE0F Youtube script ideas",
-                content = "There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... "
+                note = "There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... "
             )
         }
         noteListAdapter.submitList(notes) {

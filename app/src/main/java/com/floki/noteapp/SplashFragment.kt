@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.floki.noteapp.databinding.FragmentSplashBinding
-import java.util.logging.Handler
 
 class SplashFragment : Fragment() {
     private var _binding: FragmentSplashBinding? = null

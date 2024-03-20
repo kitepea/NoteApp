@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.floki.noteapp.Model.Note
 import com.floki.noteapp.databinding.NoteItemLayoutBinding
 
-object NoteDiffUtilItemCallback: DiffUtil.ItemCallback<Note>() {
+object NoteDiffUtilItemCallback : DiffUtil.ItemCallback<Note>() {
     override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
         // compare by id
         return oldItem.id == newItem.id
@@ -19,6 +20,7 @@ object NoteDiffUtilItemCallback: DiffUtil.ItemCallback<Note>() {
     }
 
 }
+
 class NoteListAdapter() :
     ListAdapter<Note, NoteListAdapter.NoteViewHolder>(NoteDiffUtilItemCallback) {
     private var notes: List<Note> = emptyList()
@@ -29,7 +31,7 @@ class NoteListAdapter() :
         fun bind(note: Note) {
             binding.run {
                 tvTitle.text = note.title
-                tvContent.text = note.content
+                tvContent.text = note.note
             }
         }
     }
