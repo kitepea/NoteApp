@@ -18,7 +18,6 @@ object NoteDiffUtilItemCallback : DiffUtil.ItemCallback<Note>() {
         // compare by content -> ==
         return oldItem == newItem
     }
-
 }
 
 class NoteListAdapter() :
@@ -43,6 +42,10 @@ class NoteListAdapter() :
             false
         )
         return NoteViewHolder(binding)
+    }
+
+    override fun getItemCount(): Int {
+        return notes.size
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.floki.noteapp.Model.Note
 import com.floki.noteapp.databinding.ActivityAllNoteBinding
-import java.util.UUID
 import kotlin.LazyThreadSafetyMode.NONE
 
 
@@ -21,9 +20,10 @@ class NoteRecyclerViewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setUpRecyclerView()
+        var nextId = 1
         val notes = List(10) {
             Note(
-                id = UUID.randomUUID().toString().toInt(),
+                id = nextId++,
                 title = "$it title. ✍\uFE0F Youtube script ideas",
                 note = "There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ",
                 null
