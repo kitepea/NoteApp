@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.floki.noteapp.Adapter.NoteListAdapter
 import com.floki.noteapp.Model.Note
 import com.floki.noteapp.databinding.ActivityAllNoteBinding
 import java.text.SimpleDateFormat

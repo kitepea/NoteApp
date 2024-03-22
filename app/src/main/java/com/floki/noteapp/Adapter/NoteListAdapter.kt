@@ -1,4 +1,4 @@
-package com.floki.noteapp
+package com.floki.noteapp.Adapter
 
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.floki.noteapp.Model.Note
+import com.floki.noteapp.R
 import com.floki.noteapp.databinding.NoteItemLayoutBinding
 import kotlin.random.Random
 
