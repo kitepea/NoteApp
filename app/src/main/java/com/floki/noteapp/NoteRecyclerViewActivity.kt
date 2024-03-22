@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.floki.noteapp.Model.Note
 import com.floki.noteapp.databinding.ActivityAllNoteBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.LazyThreadSafetyMode.NONE
 
 
@@ -26,7 +29,7 @@ class NoteRecyclerViewActivity : AppCompatActivity() {
                 id = nextId++,
                 title = "$it title. ✍\uFE0F Youtube script ideas",
                 note = "There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform... ",
-                null
+                date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
             )
         }
         noteListAdapter.submitList(notes) {

@@ -9,11 +9,12 @@
     <string name="confirm_password">Confirm password</string>
     <string name="create_account">Create account</string>
     <string name="all_notes">All Notes</string>
-    <string name="there_are_many_apps_in_android_that_can_run_or_emulate_other_operating_systems_via_utilizing_hardware_support_for_platform">There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform...</string>
+    <string name="content">There are many apps in Android that can run or emulate other operating systems, via utilizing hardware support for platform...</string>
     <string name="youtube_script_ideas">✍️ Youtube script ideas</string>
     <string name="no_notes_found">No notes found</string>
     <string name="add_notes">Add notes</string>
     <string name="title">Title</string>
     <string name="your_notes_here">Your notes here...</string>
     <string name="save">Save</string>
+    <string name="date">This is the date. This is the date.</string>
 </resources>

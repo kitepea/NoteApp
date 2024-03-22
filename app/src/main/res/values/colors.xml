@@ -4,4 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#7885FF</color>
     <color name="gray_700">#FF303030</color>
+
+
+    <color name="noteColor1">#5BF44336</color>
+    <color name="noteColor2">#7238CC77</color>
+    <color name="noteColor3">#6323C4ED</color>
+    <color name="noteColor4">#41FFC107</color>
+    <color name="noteColor5">#2A318BD1</color>
+    <color name="noteColor6">#46D345D0</color>
 </resources>
