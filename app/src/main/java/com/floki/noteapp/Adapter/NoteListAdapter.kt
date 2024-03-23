@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.floki.noteapp.Model.Note
 import com.floki.noteapp.R
 import com.floki.noteapp.databinding.NoteItemLayoutBinding
-import kotlin.random.Random
 
 object NoteDiffUtilItemCallback : DiffUtil.ItemCallback<Note>() {
     override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
@@ -41,24 +40,9 @@ class NoteListAdapter() :
                     R.drawable.curve,
                     null
                 ) as GradientDrawable
-                drawable.setColor(itemView.resources.getColor(randomColor(), null))
+                drawable.setColor(itemView.resources.getColor(note.color, null))
                 noteLayout.background = drawable
             }
-        }
-
-        fun randomColor(): Int {
-            val list = ArrayList<Int>()
-
-            list.add(R.color.noteColor1)
-            list.add(R.color.noteColor2)
-            list.add(R.color.noteColor3)
-            list.add(R.color.noteColor4)
-            list.add(R.color.noteColor5)
-            list.add(R.color.noteColor6)
-
-            val seed = System.currentTimeMillis().toInt()
-            val random = Random(seed).nextInt(list.size)
-            return list[random]
         }
     }
 
