@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.floki.noteapp.Adapter.NoteListAdapter
@@ -15,9 +16,10 @@ import java.util.Locale
 import kotlin.LazyThreadSafetyMode.NONE
 
 
-class NoteRecyclerViewActivity : AppCompatActivity() {
+class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClickListener {
     private val binding by lazy(NONE) { ActivityAllNoteBinding.inflate(layoutInflater) }
-    private val noteListAdapter by lazy(NONE) { NoteListAdapter() }
+    private val noteListAdapter by lazy(NONE) { NoteListAdapter(this) }
+    // Database, view model, note
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,5 +62,13 @@ class NoteRecyclerViewActivity : AppCompatActivity() {
             addItemDecoration(mDividerItemDecoration)
         }
 
+    }
+
+    override fun onItemClicked(note: Note) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLongItemClicked(note: Note, noteLayout: ConstraintLayout) {
+        TODO("Not yet implemented")
     }
 }
