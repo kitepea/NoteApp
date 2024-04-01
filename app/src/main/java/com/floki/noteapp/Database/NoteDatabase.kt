@@ -9,6 +9,7 @@ import com.floki.noteapp.Utilities.DATABASE_NAME
 
 @Database(entities = arrayOf(Note::class), version = 1, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {
+    // NoteDao là một interface chứa các phương thức để tương tác với bảng Note trong cơ sở dữ liệu.
     abstract fun getNoteDao(): NoteDao
 
     companion object {

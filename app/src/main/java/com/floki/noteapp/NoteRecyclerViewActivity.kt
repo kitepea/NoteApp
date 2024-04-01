@@ -1,14 +1,20 @@
 package com.floki.noteapp
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.floki.noteapp.Adapter.NoteListAdapter
+import com.floki.noteapp.Database.NoteDatabase
 import com.floki.noteapp.Model.Note
+import com.floki.noteapp.Model.NoteViewModel
 import com.floki.noteapp.databinding.ActivityAllNoteBinding
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -19,6 +25,21 @@ import kotlin.LazyThreadSafetyMode.NONE
 class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClickListener {
     private val binding by lazy(NONE) { ActivityAllNoteBinding.inflate(layoutInflater) }
     private val noteListAdapter by lazy(NONE) { NoteListAdapter(this) }
+    private val database by lazy { NoteDatabase.getDatabase(this) }
+    private val noteViewModel: NoteViewModel by viewModels {
+        ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+    }
+
+    private val updateNote =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val note = result.data?.getSerializableExtra("note") as? Note
+                if (note != null) {
+
+                    noteViewModel.updateNote(note)
+                }
+            }
+        }
     // Database, view model, note
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +47,7 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
         setContentView(binding.root)
 
         setUpRecyclerView()
+
         var nextId = 1
         val notes = List(10) {
             Note(
@@ -39,10 +61,7 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
             println(">>> submitList Done")
         }
 
-        binding.button2.setOnClickListener { view ->
-            val intent = Intent(this, AddNoteActivity::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun setUpRecyclerView() {
@@ -50,6 +69,8 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
             setHasFixedSize(true) //optimization
             layoutManager = LinearLayoutManager(context)
             adapter = noteListAdapter
+
+
             val mDividerItemDecoration = DividerItemDecoration(
                 context,
                 (layoutManager as LinearLayoutManager).orientation
@@ -60,15 +81,30 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
 
             mDividerItemDecoration.setDrawable(dividerDrawable)
             addItemDecoration(mDividerItemDecoration)
+
+        }
+        val getContent =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val note = result.data?.getSerializableExtra("note") as? Note
+                    if (note != null) {
+                        noteViewModel.insertNote(note)
+                    }
+                }
+            }
+
+        binding.buttonAddNote.setOnClickListener { view ->
+            val intent = Intent(this, AddNoteActivity::class.java)
+            getContent.launch(intent)
         }
 
     }
 
     override fun onItemClicked(note: Note) {
-        TODO("Not yet implemented")
+        val intent = Intent(this, AddNoteActivity::class.java)
+        intent.putExtra("current_note", note)
+        updateNote.launch(intent)
     }
 
-    override fun onLongItemClicked(note: Note, noteLayout: ConstraintLayout) {
-        TODO("Not yet implemented")
-    }
+    override fun onLongItemClicked(note: Note, noteLayout: ConstraintLayout) {}
 }
