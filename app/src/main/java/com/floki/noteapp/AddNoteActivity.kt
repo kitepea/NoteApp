@@ -1,6 +1,5 @@
 package com.floki.noteapp
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -21,7 +20,6 @@ class AddNoteActivity : AppCompatActivity() {
     // Track if note is updated or new note is created
     private var isUpdate = false
 
-    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
@@ -45,10 +43,10 @@ class AddNoteActivity : AppCompatActivity() {
             val content = binding.eTNote.text.toString()
 
             if (title.isNotEmpty() || content.isNotEmpty()) {
-                val formatter = SimpleDateFormat("EEE, MMMM dd yyyy HH:mm a")
+                val formatter = SimpleDateFormat("EEE, MMMM dd yyyy HH:mm:ss")
 
                 note = if (isUpdate) {
-                    Note(oldNote.id, title, content, formatter.format(Date()))
+                    Note(oldNote.id, title, content, "(Edited) ${formatter.format(Date())}")
                 } else {
                     Note(null, title, content, formatter.format(Date()))
                 }
