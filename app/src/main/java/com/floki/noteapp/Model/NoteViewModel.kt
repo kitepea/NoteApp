@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class NoteViewModel(application: Application) : AndroidViewModel(application) {
     private val noteRepository: NoteRepository
-    private val allNotes: LiveData<List<Note>>
+    val allNotes: LiveData<List<Note>>
 
     init {
         val dao = NoteDatabase.getDatabase(application).getNoteDao()
@@ -20,7 +20,9 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /*
-    There are different Dispatchers. Dispatchers.IO is used for IO works like database or remote server. Dispatchers.Default is used for tasks that has high CPU usage. Dispatchers.Main is used for tasks that need to update UI.
+    There are different Dispatchers. Dispatchers.IO is used for IO works like database or remote server.
+    Dispatchers.Default is used for tasks that has high CPU usage.
+    Dispatchers.Main is used for tasks that need to update UI.
     */
     fun deleteNode(note: Note) = viewModelScope.launch(Dispatchers.IO) {
         noteRepository.delete(note)

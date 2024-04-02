@@ -34,8 +34,13 @@ class NoteListAdapter(private val listener: NotesClickListener) :
         fun bind(note: Note, listener: NotesClickListener) {
             binding.run {
                 tvTitle.text = note.title
+                tvTitle.isSelected = true
+
                 tvContent.text = note.note
+
                 tvDate.text = note.date
+                tvDate.isSelected = true
+
                 val drawable = ResourcesCompat.getDrawable(
                     itemView.resources,
                     R.drawable.curve,
@@ -73,9 +78,5 @@ class NoteListAdapter(private val listener: NotesClickListener) :
     interface NotesClickListener {
         fun onItemClicked(note: Note)
         fun onLongItemClicked(note: Note, noteLayout: ConstraintLayout)
-    }
-
-    fun updateList(newList: List<Note>) {
-        submitList(newList)
     }
 }

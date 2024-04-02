@@ -17,4 +17,5 @@
     <string name="your_notes_here">Your notes here...</string>
     <string name="save">Save</string>
     <string name="date">This is the date. This is the date.</string>
+    <string name="delete">Delete</string>
 </resources>

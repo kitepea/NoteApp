@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
+import android.widget.PopupMenu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -22,20 +25,21 @@ import java.util.Locale
 import kotlin.LazyThreadSafetyMode.NONE
 
 
-class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClickListener {
+class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClickListener,
+    PopupMenu.OnMenuItemClickListener {
     private val binding by lazy(NONE) { ActivityAllNoteBinding.inflate(layoutInflater) }
     private val noteListAdapter by lazy(NONE) { NoteListAdapter(this) }
     private val database by lazy { NoteDatabase.getDatabase(this) }
     private val noteViewModel: NoteViewModel by viewModels {
         ViewModelProvider.AndroidViewModelFactory.getInstance(application)
     }
+    private lateinit var selectedNote: Note
 
     private val updateNote =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val note = result.data?.getSerializableExtra("note") as? Note
+                val note = result.data?.getParcelableExtra("note") as? Note
                 if (note != null) {
-
                     noteViewModel.updateNote(note)
                 }
             }
@@ -57,8 +61,13 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
                 date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
             )
         }
-        noteListAdapter.submitList(notes) {
-            println(">>> submitList Done")
+
+        noteViewModel.allNotes.observe(this) { list ->
+            list?.let {
+                noteListAdapter.submitList(list) {
+                    Log.d("Submit", "submitList Done")
+                }
+            }
         }
 
 
@@ -86,14 +95,14 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
         val getContent =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    val note = result.data?.getSerializableExtra("note") as? Note
+                    val note = result.data?.getParcelableExtra("note") as? Note
                     if (note != null) {
                         noteViewModel.insertNote(note)
                     }
                 }
             }
 
-        binding.buttonAddNote.setOnClickListener { view ->
+        binding.buttonAddNote.setOnClickListener {
             val intent = Intent(this, AddNoteActivity::class.java)
             getContent.launch(intent)
         }
@@ -106,5 +115,23 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
         updateNote.launch(intent)
     }
 
-    override fun onLongItemClicked(note: Note, noteLayout: ConstraintLayout) {}
+    override fun onLongItemClicked(note: Note, noteLayout: ConstraintLayout) {
+        selectedNote = note
+        popUpDisplay(noteLayout)
+    }
+
+    private fun popUpDisplay(noteLayout: ConstraintLayout) {
+        val popUp = PopupMenu(this, noteLayout)
+        popUp.setOnMenuItemClickListener(this@NoteRecyclerViewActivity)
+        popUp.inflate(R.menu.pop_up_menu)
+        popUp.show()
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.delete_note) {
+            noteViewModel.deleteNode(selectedNote)
+            return true
+        }
+        return false
+    }
 }
