@@ -5,17 +5,6 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_258"
-        android:src="@drawable/no_note"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -49,6 +38,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_258"
+        android:src="@drawable/no_note"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -68,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_12"
         android:gravity="center_horizontal"
-        android:text="When you add a notes. You will see\n your notes here"
+        android:text="@string/when_you_add_a_notes_you_will_see_n_your_notes_here"
         android:textColor="#4F4F4F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

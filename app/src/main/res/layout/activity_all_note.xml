@@ -32,9 +32,10 @@
         android:id="@+id/button_add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp_50"
-        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginEnd="@dimen/dp_30"
+        android:layout_marginBottom="@dimen/dp_60"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/add_button"
         android:elevation="@dimen/dp_10"
         android:src="@drawable/add_note"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,5 +55,49 @@
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/note_item_layout" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/no_note_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_258"
+            android:src="@drawable/no_note"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_40"
+            android:text="@string/no_notes_found"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            android:gravity="center_horizontal"
+            android:text="@string/when_you_add_a_notes_you_will_see_n_your_notes_here"
+            android:textColor="#4F4F4F"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

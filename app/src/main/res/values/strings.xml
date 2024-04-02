@@ -18,4 +18,6 @@
     <string name="save">Save</string>
     <string name="date">This is the date. This is the date.</string>
     <string name="delete">Delete</string>
+    <string name="when_you_add_a_notes_you_will_see_n_your_notes_here">When you add a notes. You will see\n your notes here</string>
+    <string name="add_button">Add Button</string>
 </resources>

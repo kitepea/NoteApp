@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.PopupMenu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -19,9 +20,6 @@ import com.floki.noteapp.Database.NoteDatabase
 import com.floki.noteapp.Model.Note
 import com.floki.noteapp.Model.NoteViewModel
 import com.floki.noteapp.databinding.ActivityAllNoteBinding
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import kotlin.LazyThreadSafetyMode.NONE
 
 
@@ -29,7 +27,8 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
     PopupMenu.OnMenuItemClickListener {
     private val binding by lazy(NONE) { ActivityAllNoteBinding.inflate(layoutInflater) }
     private val noteListAdapter by lazy(NONE) { NoteListAdapter(this) }
-    private val database by lazy { NoteDatabase.getDatabase(this) }
+    private val database: NoteDatabase by lazy { NoteDatabase.getDatabase(this) }
+
     private val noteViewModel: NoteViewModel by viewModels {
         ViewModelProvider.AndroidViewModelFactory.getInstance(application)
     }
@@ -52,6 +51,7 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
 
         setUpRecyclerView()
 
+        /*
         var nextId = 1
         val notes = List(10) {
             Note(
@@ -61,16 +61,20 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
                 date = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(Date())
             )
         }
+        */
 
         noteViewModel.allNotes.observe(this) { list ->
             list?.let {
                 noteListAdapter.submitList(list) {
                     Log.d("Submit", "submitList Done")
                 }
+                if (list.isEmpty()) {
+                    binding.noNoteView.visibility = View.VISIBLE
+                } else {
+                    binding.noNoteView.visibility = View.INVISIBLE
+                }
             }
         }
-
-
     }
 
     private fun setUpRecyclerView() {
