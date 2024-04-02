@@ -97,6 +97,7 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
 
         }
         val getContent =
+            // Read
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     val note = result.data?.getParcelableExtra("note") as? Note
@@ -114,6 +115,7 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
     }
 
     override fun onItemClicked(note: Note) {
+        // Read current_note and note
         val intent = Intent(this, AddNoteActivity::class.java)
         intent.putExtra("current_note", note)
         updateNote.launch(intent)

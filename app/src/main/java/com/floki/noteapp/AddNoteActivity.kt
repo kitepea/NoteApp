@@ -39,13 +39,14 @@ class AddNoteActivity : AppCompatActivity() {
         }
 
         binding.saveButton.setOnClickListener {
-            val title = binding.eTTitle.text.toString()
+            val title = "✍\uFE0F " + binding.eTTitle.text.toString()
             val content = binding.eTNote.text.toString()
 
             if (title.isNotEmpty() || content.isNotEmpty()) {
                 val formatter = SimpleDateFormat("EEE, MMMM dd yyyy HH:mm:ss")
 
                 note = if (isUpdate) {
+                    // Read
                     Note(oldNote.id, title, content, "(Edited) ${formatter.format(Date())}")
                 } else {
                     Note(null, title, content, formatter.format(Date()))
@@ -61,6 +62,7 @@ class AddNoteActivity : AppCompatActivity() {
                     "Please enter title and note",
                     Toast.LENGTH_SHORT
                 ).show()
+                // Read
                 return@setOnClickListener
             }
         }
