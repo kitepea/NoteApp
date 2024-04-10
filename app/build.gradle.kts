@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp") version "1.9.21-1.0.15"
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 apply(from = file("../autodimension.gradle"))
@@ -43,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:firebase-auth:22.3.1")
     val fragment_version = "1.6.2"
     implementation("androidx.fragment:fragment-ktx:$fragment_version")
     implementation("androidx.core:core-ktx:1.12.0")
@@ -52,7 +54,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("androidx.core:core-splashscreen:1.1.0-alpha02")
+    implementation("androidx.core:core-splashscreen:1.1.0-rc01")
 
 
     val room_version = "2.6.1"
@@ -64,5 +66,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+
 }
 

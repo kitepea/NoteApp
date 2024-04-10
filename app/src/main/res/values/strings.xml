@@ -5,6 +5,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="signup"><font fgcolor="#6C7E8E">Don’t have an account?</font> <font fgcolor="#7885FF">Sign up</font></string>
+    <string name="signin"><font fgcolor="#6C7E8E">Account created?</font> <font fgcolor="#7885FF">Sign in</font></string>
     <string name="create_naccount">Create\naccount</string>
     <string name="confirm_password">Confirm password</string>
     <string name="create_account">Create account</string>
@@ -20,4 +21,6 @@
     <string name="delete">Delete</string>
     <string name="when_you_add_a_notes_you_will_see_n_your_notes_here">When you add a notes. You will see\n your notes here</string>
     <string name="add_button">Add Button</string>
+    <string name="email">Email</string>
+    <string name="icon">Icon</string>
 </resources>

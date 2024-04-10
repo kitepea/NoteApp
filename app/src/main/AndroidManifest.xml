@@ -14,7 +14,7 @@
         tools:remove="android:appComponentFactory"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.NoteApp.MySplash">
             <intent-filter>
@@ -24,12 +24,22 @@
         </activity>
 
         <activity
+            android:name=".RegisterActivity"
+            android:exported="true">
+            
+        </activity>
+
+        <activity
             android:name=".NoteRecyclerViewActivity"
             android:exported="true">
 
         </activity>
 
-        <activity android:name="com.floki.noteapp.AddNoteActivity" />
+        <activity
+            android:name="com.floki.noteapp.AddNoteActivity"
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ import com.floki.noteapp.Database.NoteDatabase
 import com.floki.noteapp.Model.Note
 import com.floki.noteapp.Model.NoteViewModel
 import com.floki.noteapp.databinding.ActivityAllNoteBinding
+import com.google.firebase.auth.FirebaseAuth
 import kotlin.LazyThreadSafetyMode.NONE
 
 
@@ -28,6 +29,7 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
     private val binding by lazy(NONE) { ActivityAllNoteBinding.inflate(layoutInflater) }
     private val noteListAdapter by lazy(NONE) { NoteListAdapter(this) }
     private val database: NoteDatabase by lazy { NoteDatabase.getDatabase(this) }
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private val noteViewModel: NoteViewModel by viewModels {
         ViewModelProvider.AndroidViewModelFactory.getInstance(application)
@@ -48,6 +50,7 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        firebaseAuth = FirebaseAuth.getInstance()
 
         setUpRecyclerView()
 
@@ -74,6 +77,14 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
                     binding.noNoteView.visibility = View.INVISIBLE
                 }
             }
+        }
+
+        val logoutButton = binding.logout
+        logoutButton.setOnClickListener {
+            firebaseAuth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
