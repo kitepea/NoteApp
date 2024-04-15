@@ -1,6 +1,13 @@
 # Android Application Documentation: NoteApp
 **NoteApp** is an Android application built using Kotlin and follows the MVVM (Model-View-ViewModel) architecture. 
 
+- Utilized AndroidX Libraries, XML, MVVM, SQLite, Room Database, Firebase Authentication, Kotlin LiveData, Kotlin Coroutines, KSP, Kotlin Parcelize, …
+### Features:
+- Designed to work offline, allowing users to take notes without the need for an internet connection.
+- Created an User-friendly Interface, the app features a simple and intuitive interface, making it easy for users to create, edit, and manage users notes.
+- Included a login and registration system using Firebase Authentication, ensuring that users’ notes are private and protected.
+- Implemented Note Management, allow users to create new notes, edit and delete existing ones with easy operations.
+
 ---
 # Project Structure
 ```
