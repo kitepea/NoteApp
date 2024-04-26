@@ -35,4 +35,9 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
     fun updateNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
         noteRepository.update(note)
     }
+
+    fun getNotesByUserId(userId: String): LiveData<List<Note>> {
+        return noteRepository.getNotesByUserId(userId)
+    }
+
 }

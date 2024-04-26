@@ -65,16 +65,21 @@ class NoteRecyclerViewActivity : AppCompatActivity(), NoteListAdapter.NotesClick
             )
         }
         */
+        val user = FirebaseAuth.getInstance()
+        val uid = user.uid
 
-        noteViewModel.allNotes.observe(this) { list ->
-            list?.let {
-                noteListAdapter.submitList(list) {
-                    Log.d("Submit", "submitList Done")
-                }
-                if (list.isEmpty()) {
-                    binding.noNoteView.visibility = View.VISIBLE
-                } else {
-                    binding.noNoteView.visibility = View.INVISIBLE
+
+        if (uid != null) {
+            noteViewModel.getNotesByUserId(uid).observe(this) { list ->
+                list?.let {
+                    noteListAdapter.submitList(list) {
+                        Log.d("Submit", "submitList Done")
+                    }
+                    if (list.isEmpty()) {
+                        binding.noNoteView.visibility = View.VISIBLE
+                    } else {
+                        binding.noNoteView.visibility = View.INVISIBLE
+                    }
                 }
             }
         }

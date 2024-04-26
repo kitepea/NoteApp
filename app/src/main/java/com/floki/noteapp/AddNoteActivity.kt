@@ -7,11 +7,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.floki.noteapp.Model.Note
 import com.floki.noteapp.databinding.ActivityAddNoteBinding
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.Date
 
 class AddNoteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddNoteBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+
 
     // For note updating
     private lateinit var note: Note
@@ -24,6 +27,7 @@ class AddNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        firebaseAuth = FirebaseAuth.getInstance()
 
         binding.backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
@@ -45,11 +49,14 @@ class AddNoteActivity : AppCompatActivity() {
             if (title.isNotEmpty() || content.isNotEmpty()) {
                 val formatter = SimpleDateFormat("EEE, MMMM dd yyyy HH:mm:ss")
 
+                val user = firebaseAuth.currentUser
+                val userId = user?.uid
+
                 note = if (isUpdate) {
                     // Read
-                    Note(oldNote.id, title, content, "(Edited) ${formatter.format(Date())}")
+                    Note(oldNote.id, title, userId, content, "(Edited) ${formatter.format(Date())}")
                 } else {
-                    Note(null, title, content, formatter.format(Date()))
+                    Note(null, title, userId, content, formatter.format(Date()))
                 }
 
                 val intent = Intent()

@@ -22,4 +22,8 @@ interface NoteDao {
 
     @Query("UPDATE notes_table Set title = :title, note = :note, date = :date where id = :id")
     suspend fun update(id: Int?, title: String?, note: String?, date: String?)
+
+    @Query("SELECT * FROM notes_table WHERE user_id = :userId")
+    fun getNotesByUserId(userId: String): LiveData<List<Note>>
+
 }

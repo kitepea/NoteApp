@@ -19,4 +19,8 @@ class NoteRepository(private val noteDao: NoteDao) {
         noteDao.update(note.id, note.title, note.note, note.date)
     }
 
+    fun getNotesByUserId(userId: String): LiveData<List<Note>> {
+        return noteDao.getNotesByUserId(userId)
+    }
+
 }

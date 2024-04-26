@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.floki.noteapp.Model.Note
 import com.floki.noteapp.Utilities.DATABASE_NAME
 
-@Database(entities = arrayOf(Note::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Note::class), version = 2, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {
     // NoteDao là một interface chứa các phương thức để tương tác với bảng Note trong cơ sở dữ liệu.
     abstract fun getNoteDao(): NoteDao
@@ -21,7 +21,8 @@ abstract class NoteDatabase : RoomDatabase() {
                     context.applicationContext,
                     NoteDatabase::class.java,
                     DATABASE_NAME
-                ).build().also { INSTANCE = it }
+                ).fallbackToDestructiveMigration()
+                    .build().also { INSTANCE = it }
             }
         }
     }
